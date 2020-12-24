@@ -66,7 +66,7 @@ class SqlController extends AbstractController
             false,
             isset($_POST['delimiter'])
                 ? htmlspecialchars($_POST['delimiter'])
-                : ';'
+                : $GLOBALS['cfg']['Delimiter']
         ));
     }
 }
