@@ -537,7 +537,7 @@ class Index
         return Util::getDropdown(
             "index[Index_type]",
             $types,
-            $this->_type,
+            empty($this->_type) ? 'BTREE' : $this->_type,
             "select_index_type"
         );
     }
