@@ -5,7 +5,7 @@
   top: 0;
   #{$left}: 0;
   height: 100vh;
-  background: url('../img/left_nav_bg.png') repeat-y right 0 $navi-background;
+  background: $navi-background;
   color: $navi-color;
   z-index: 800;
 
@@ -439,7 +439,7 @@ html.ie {
       overflow: hidden;
       overflow-y: auto;
       list-style: none;
-      background: #fff;
+      background: lighten($navi-background, 10%);
       border: 1px solid #ddd;
       border-radius: 0.3em;
       border-top-right-radius: 0;
@@ -482,7 +482,7 @@ html.ie {
     padding: 0.3em;
     border: 1px solid #ddd;
     border-radius: 0.3em;
-    background: #f2f2f2;
+    background: #eee;
     cursor: pointer;
   }
 }

@@ -6,6 +6,16 @@ ul.resizable-menu {
     padding: 0;
     white-space: nowrap;
   }
+  
+  a {
+    color: #000;
+
+    &:link,
+    &:visited,
+    &:active {
+      color: #000
+    }
+  }
 
   .submenu {
     display: none;
@@ -28,7 +38,7 @@ ul.resizable-menu {
   }
 
   li:hover {
-    background: linear-gradient(#fff, #e5e5e5);
+    background: linear-gradient($alt-gradient-a, $alt-gradient-b);
 
     ul {
       display: block;

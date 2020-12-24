@@ -115,6 +115,14 @@ a:hover {
   color: #235a81;
 }
 
+a.sortlink {
+  color: #000;
+
+  &:hover {
+    color: $main-link-hover;
+  }
+}
+
 button.mult_submit {
   &:hover,
   &:focus {
@@ -170,7 +178,20 @@ th {
   font-weight: bold;
   color: $th-color;
   background: #f3f3f3;
-  background: linear-gradient(#fff, #ccc);
+  background: linear-gradient($main-gradient-a, $main-gradient-b);
+}
+
+thead>tr>th a {
+  text-shadow: none;
+  &,
+  &:link,
+  &:visited,
+  &:active {
+    color: #fff;
+  }
+  &:hover {
+    color: #c00;
+  }
 }
 
 a img {
@@ -615,7 +636,7 @@ table tbody:first-of-type tr:nth-child(odd),
 table tbody:first-of-type tr:nth-child(odd) th,
 #table_index tbody:nth-of-type(odd) tr,
 #table_index tbody:nth-of-type(odd) th {
-  background: #fff;
+  background: #f7f7f7;
 }
 
 // even items 2,4,6,8...
@@ -639,7 +660,7 @@ td.marked:not(.nomarker),
 table tr.marked:not(.nomarker) td,
 table tbody:first-of-type tr.marked:not(.nomarker) th,
 table tr.marked:not(.nomarker) {
-  background: linear-gradient(#ced6df, #b6c6d7);
+  background: linear-gradient($alt-gradient-a, $alt-gradient-b);
   color: $browse-marker-color;
 }
 
@@ -647,7 +668,7 @@ table tr.marked:not(.nomarker) {
 table tbody:first-of-type tr:not(.nopointer):hover,
 table tbody:first-of-type tr:not(.nopointer):hover th,
 .hover:not(.nopointer) {
-  background: linear-gradient(#ced6df, #b6c6d7);
+  background: linear-gradient($alt-gradient-a, $alt-gradient-b);
   color: $browse-pointer-color;
 }
 
@@ -655,7 +676,7 @@ table tbody:first-of-type tr:not(.nopointer):hover th,
 #table_index tbody:hover tr,
 #table_index tbody:hover th,
 table tr.hover:not(.nopointer) th {
-  background: linear-gradient(#ced6df, #b6c6d7);
+  background: linear-gradient($alt-gradient-a, $alt-gradient-b);
   color: $browse-pointer-color;
 }
 
@@ -1092,10 +1113,6 @@ li.last.database {
   margin-top: 0.5em;
   padding: 0.1em 0.3em;
 
-  a {
-    text-shadow: 0 1px 0 #fff;
-  }
-
   .error {
     background: #eee;
     border: 0 !important;
@@ -1134,8 +1151,8 @@ ul {
 }
 
 .menucontainer {
-  background: linear-gradient(#fff, #dcdcdc);
-  border-top: 1px solid #aaa;
+  background: linear-gradient($main-gradient-a, $main-gradient-b);
+  border-top: 1px solid #aaa; 
 }
 
 .scrollindicator {
@@ -2093,16 +2110,13 @@ div.sqlvalidate {
   padding-bottom: 1em;
 
   h2 {
-    background-color: #bbb;
+    background: linear-gradient($main-gradient-a, $main-gradient-b);
     padding: 0.1em 0.3em;
     margin-top: 0;
     color: #fff;
     font-size: 1.6em;
     font-weight: normal;
     text-shadow: 0 1px 0 #777;
-    -moz-box-shadow: 1px 1px 15px #999 inset;
-    -webkit-box-shadow: 1px 1px 15px #999 inset;
-    box-shadow: 1px 1px 15px #999 inset;
   }
 }
 
@@ -3316,6 +3330,10 @@ input#auto_increment_opt {
 
 body .ui-widget {
   font-size: 1em;
+}
+
+body .ui-widget-header {
+	background: linear-gradient($main-gradient-a, $main-gradient-b);
 }
 
 body #ui-datepicker-div {
