@@ -6,21 +6,21 @@
 $navi-width: 240px;
 
 // foreground (text) color for the navi frame
-$navi-color: #000;
+$navi-color: #fff;
 
 // background for the navi frame
-$navi-background: #f3f3f3;
+$navi-background: #fb7922;
 
 // foreground (text) color of the pointer in navi frame
-$navi-pointer-color: #000;
+$navi-pointer-color: #fff;
 
 // background of the pointer in navi frame
-$navi-pointer-background: #ddd;
+$navi-pointer-background: lighten($navi-background, 10%);
 
 // main frame
 
 // foreground (text) color for the main frame
-$main-color: #444;
+$main-color: #333;
 
 // background for the main frame
 $main-background: #fff;
@@ -70,3 +70,13 @@ $secondary: #ddd;
 
 $btn-border-radius: 0.85rem;
 $btn-line-height: 1.15;
+
+// custom colors
+
+$main-link-color: #bb3902;
+$main-link-hover: #c00;
+
+$main-gradient-a: #ffb380;
+$main-gradient-b: #fb7922;
+$alt-gradient-a: #f8e8a0;
+$alt-gradient-b: #ffe6b3;
