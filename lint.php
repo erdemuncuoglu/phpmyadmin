@@ -54,4 +54,11 @@ if (! empty($_POST['options'])) {
     }
 }
 
-echo json_encode(Linter::lint($sql_query));
+echo json_encode(
+    Linter::lint(
+        $sql_query,
+        isset($params['delimiter'])
+            ? htmlspecialchars($params['delimiter'])
+            : $GLOBALS['cfg']['Delimiter']
+    )
+);

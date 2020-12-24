@@ -29,6 +29,6 @@ class SqlController extends AbstractController
 
         require_once ROOT_PATH . 'libraries/server_common.inc.php';
 
-        return $sqlQueryForm->getHtml();
+        return $sqlQueryForm->getHtml(true, false, $GLOBALS['cfg']['Delimiter']);
     }
 }
