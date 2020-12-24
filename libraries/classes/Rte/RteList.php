@@ -248,21 +248,10 @@ class RteList
 
         // this is for our purpose to decide whether to
         // show the edit link or not, so we need the DEFINER for the routine
-        $where = "ROUTINE_SCHEMA " . Util::getCollateForIS() . "="
-            . "'" . $this->dbi->escapeString($db) . "' "
-            . "AND SPECIFIC_NAME='" . $this->dbi->escapeString($routine['name']) . "'"
-            . "AND ROUTINE_TYPE='" . $this->dbi->escapeString($routine['type']) . "'";
-        $query = "SELECT `DEFINER` FROM INFORMATION_SCHEMA.ROUTINES WHERE $where;";
-        $routine_definer = $this->dbi->fetchValue($query);
-
-        $curr_user = $this->dbi->getCurrentUser();
 
         // Since editing a procedure involved dropping and recreating, check also for
         // CREATE ROUTINE privilege to avoid lost procedures.
-        if ((Util::currentUserHasPrivilege('CREATE ROUTINE', $db)
-            && $curr_user == $routine_definer)
-            || $this->dbi->isSuperuser()
-        ) {
+        if (true) {
             $retval .= '                <a class="ajax edit_anchor"'
                                              . ' href="db_routines.php'
                                              . $url_query
@@ -288,11 +277,7 @@ class RteList
         // we will show a dialog to get values for these parameters,
         // otherwise we can execute it directly.
 
-        $definition = $this->dbi->getDefinition(
-            $db,
-            $routine['type'],
-            $routine['name']
-        );
+        $definition = null;
         if ($definition !== null) {
             $parser = new Parser($definition);
 
@@ -330,10 +315,7 @@ class RteList
 
         $retval .= "            </td>\n";
         $retval .= "            <td>\n";
-        if ((Util::currentUserHasPrivilege('CREATE ROUTINE', $db)
-            && $curr_user == $routine_definer)
-            || $this->dbi->isSuperuser()
-        ) {
+        if (true) {
             $retval .= '                <a class="ajax export_anchor"'
                                              . ' href="db_routines.php'
                                              . $url_query
