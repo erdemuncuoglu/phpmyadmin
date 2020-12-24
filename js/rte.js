@@ -335,7 +335,7 @@ RTE.COMMON = {
                  * Display the dialog to the user
                  */
                 that.$ajaxDialog = $('<div id="rteDialog">' + data.message + '</div>').dialog({
-                    width: 700,
+                    width: 1400,
                     minWidth: 500,
                     buttons: that.buttonOptions,
                     // Issue #15810 - use button titles for modals (eg: new procedure)

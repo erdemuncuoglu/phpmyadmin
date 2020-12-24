@@ -902,6 +902,7 @@ class Routines
         $isprocedure_class  = '';
         $isfunction_select  = '';
         $isprocedure_select = '';
+        $definition_rowspan = 13;
         if ($routine['item_type'] == 'PROCEDURE') {
             $isfunction_class   = ' hide';
             $isprocedure_select = " selected='selected'";
@@ -912,6 +913,15 @@ class Routines
 
         // Create the output
         $retval  = "";
+        $retval  = "<style>";
+        $retval .= ".rte_table > tbody > tr > td {width:1px;}";
+        $retval .= ".rte_table > tbody > tr > td:nth-child(2) {width:300px;}";
+        $retval .= ".rte_table > tbody > tr > td:nth-child(3) {width:400px;}";
+        $retval .= ".routine_params_table td, .routine_params_table th {width:1px;}";
+        $retval .= ".routine_params_table th:nth-child(3) {width:100px;}";
+        $retval .= ".routine_params_table th:nth-child(4) {width:100px;}";
+        $retval .= ".routine_params_table th:nth-child(6) {width:100px;}";
+        $retval .= "</style>";
         $retval .= "<!-- START " . mb_strtoupper($mode)
             . " ROUTINE FORM -->\n\n";
         $retval .= "<form class='rte_form' action='db_routines.php' method='post'>\n";
@@ -925,6 +935,10 @@ class Routines
         $retval .= "    <td>" . __('Routine name') . "</td>\n";
         $retval .= "    <td><input type='text' name='item_name' maxlength='64'\n";
         $retval .= "               value='{$routine['item_name']}'></td>\n";
+        $retval .= "    <td rowspan='" . $definition_rowspan . "' style='vertical-align:top;min-width:500px;'>";
+        $retval .= "<textarea name='item_definition' rows='15' cols='40'>";
+        $retval .= $routine['item_definition'];
+        $retval .= "</textarea></td>";
         $retval .= "</tr>\n";
         $retval .= "<tr>\n";
         $retval .= "    <td>" . __('Type') . "</td>\n";
@@ -1029,11 +1043,10 @@ class Routines
         $retval .= "    <div class='hide no_opts'>---</div>";
         $retval .= "</td>";
         $retval .= "</tr>";
-        $retval .= "<tr>";
-        $retval .= "    <td>" . __('Definition') . "</td>";
-        $retval .= "    <td><textarea name='item_definition' rows='15' cols='40'>";
-        $retval .= $routine['item_definition'];
-        $retval .= "</textarea></td>";
+        // dummy row for table stripe
+        $retval .= "<tr class='hide'>";
+        $retval .= "    <td></td>";
+        $retval .= "    <td></td>";
         $retval .= "</tr>";
         $retval .= "<tr>";
         $retval .= "    <td>" . __('Is deterministic') . "</td>";

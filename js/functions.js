@@ -309,6 +309,7 @@ Functions.getSqlEditor = function ($textarea, options, resize, lintOptions) {
         if (resizeType === 'horizontal') {
             handles = 'e, w';
         }
+        codemirrorEditor.setSize(null, $(codemirrorEditor.getWrapperElement()).parent().height());
         $(codemirrorEditor.getWrapperElement())
             .css('resize', resizeType)
             .resizable({
