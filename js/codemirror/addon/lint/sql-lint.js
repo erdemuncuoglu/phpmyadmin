@@ -34,6 +34,7 @@ CodeMirror.sqlLint = function (text, updateLinting, options, cm) {
             'server': CommonParams.get('server'),
             'options': options.lintOptions,
             'no_history': true,
+            'delimiter': $('#id_sql_delimiter').val()
         },
         success: handleResponse
     });

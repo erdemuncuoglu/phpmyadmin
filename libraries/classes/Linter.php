@@ -91,10 +91,11 @@ class Linter
      * Runs the linting process.
      *
      * @param string $query The query to be checked.
+     * @param string $delimiter The SQL query delimiter
      *
      * @return array
      */
-    public static function lint($query)
+    public static function lint($query, $delimiter)
     {
         // Disabling lint for huge queries to save some resources.
         if (mb_strlen($query) > 10000) {
@@ -118,7 +119,7 @@ class Linter
          *
          * @var Lexer
          */
-        $lexer = new Lexer($query);
+        $lexer = new Lexer($query, false, $delimiter);
 
         /**
          * Parsed used for analysing the query.

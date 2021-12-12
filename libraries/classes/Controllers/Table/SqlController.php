@@ -47,7 +47,7 @@ class SqlController extends AbstractController
             false,
             isset($params['delimiter'])
                 ? htmlspecialchars($params['delimiter'])
-                : ';'
+                : $GLOBALS['cfg']['Delimiter']
         );
     }
 }

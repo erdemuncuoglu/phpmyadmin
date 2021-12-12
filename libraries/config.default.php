@@ -742,6 +742,13 @@ $cfg['SkipLockedTables'] = false;
 $cfg['ShowSQL'] = true;
 
 /**
+ * Default delimiter for SQL editor
+ *
+ * @global array $cfg['Delimiter']
+ */
+$cfg['Delimiter'] = ';';
+
+/**
  * retain SQL input on Ajax execute
  *
  * @global boolean $cfg['RetainQueryEditor']
