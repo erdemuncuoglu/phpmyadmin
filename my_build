@@ -1,0 +1,86 @@
+#!/bin/bash
+
+# Custom configuration skeleton
+my_branches="?"
+my_stable="?"
+remote_repo="?"
+remote_branch="?"
+# End of custom configuration skeleton
+
+CONF_FILE=my_build.conf.sh
+if [ -f $CONF_FILE ]; then
+	. $CONF_FILE
+fi
+
+stable="$remote_repo/$remote_branch"
+
+cmd_install=0
+cmd_rebase=0
+
+_die()
+{
+	echo "######## $1"
+	exit 1
+}
+
+_usage()
+{
+	echo "Usage: "`basename "${BASH_SOURCE[0]}"`" -i [-r]"
+	echo "  -i : Install composer and npm dependencies."
+	echo "  -r : Rebase all custom branches on '$stable' then merge them into '$my_stable'"
+
+}
+
+_rebase()
+{
+	git fetch -p $remote_repo
+
+	for my_branch in $my_branches; do
+		git branch $my_branch"_bak" -f $my_branch || _die "Failed to backup '$my_branch'"
+		git rebase $stable $my_branch || _die "Failed to rebase '$my_branch' on '$stable'"
+		git branch -D $my_branch"_bak"
+	done
+
+	git checkout $my_stable || _die "Failed to checkput into '$my_stable'"
+	git branch $my_stable"_bak" -f $my_stable || _die "Failed to backup '$my_stable'"
+	git reset --hard $stable || _die "Failed to reset '$my_stable'"
+	for my_branch in $my_branches; do
+		GIT_MERGE_AUTOEDIT=no git merge --no-ff $my_branch || _die "Failed to merge '$my_branch'"
+	done
+	git push -f origin $my_stable || _die "Failed to push '$my_stable'"
+	git branch -D $my_stable"_bak"
+}
+
+_install()
+{
+	composer -vvv update --no-dev || _die "composer failed!"
+	yarn install --production || _die "yarn failed!"
+}
+
+while (( "$#" )); do
+
+	case $1 in
+		-r)
+			cmd_rebase=1
+			;;
+		-i)
+			cmd_install=1
+			;;
+	esac
+	shift
+done
+
+if (( (cmd_install == 0) && (cmd_rebase == 0) )); then
+	_usage
+	exit 0
+fi
+
+if (( cmd_rebase == 1 )); then
+	_rebase
+fi
+
+if (( cmd_install == 1 )); then
+	_install
+fi
+
+exit 0
