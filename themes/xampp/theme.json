@@ -1,0 +1,8 @@
+{
+    "name": "xampp",
+    "version": "5.0",
+    "description": "XAMPP theme based on pmahomme",
+    "author": "erdem@mvc4.us",
+    "url": "https://www.phpmyadmin.net/",
+    "supports": ["5.0"]
+}
