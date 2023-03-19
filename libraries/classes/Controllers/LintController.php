@@ -9,6 +9,8 @@ namespace PhpMyAdmin\Controllers;
 
 use PhpMyAdmin\Core;
 use PhpMyAdmin\Linter;
+use PhpMyAdmin\SqlParser\Lexer;
+
 use function json_encode;
 
 /**
@@ -55,6 +57,7 @@ class LintController extends AbstractController
             }
         }
 
-        echo json_encode(Linter::lint($sqlQuery));
+        //TODO: get $delimiter from options
+        echo json_encode(Linter::lint($sqlQuery, $GLOBALS['cfg']['Delimiter']));
     }
 }
