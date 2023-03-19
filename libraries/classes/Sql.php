@@ -1334,6 +1334,7 @@ class Sql
                 }
 
                 $this->dbi->freeResult($result);
+                $result = null;
             } while ($this->dbi->moreResults() && $this->dbi->nextResult());
         } else {
             $fields_meta = [];
@@ -1818,9 +1819,9 @@ class Sql
             $extra_data ?? null
         );
 
-        if ($this->dbi->moreResults()) {
-            $this->dbi->nextResult();
-        }
+//         if ($this->dbi->moreResults()) {
+//             $this->dbi->nextResult();
+//         }
 
         $warning_messages = $this->operations->getWarningMessagesArray();
 
@@ -1863,7 +1864,9 @@ class Sql
         }
 
         // Handle disable/enable foreign key checks
-        Util::handleDisableFKCheckCleanup($default_fk_check);
+        if (! $analyzed_sql_results['is_procedure']) {
+            Util::handleDisableFKCheckCleanup($default_fk_check);
+        }
 
         foreach ($warning_messages as $warning) {
             $message = Message::notice(Message::sanitize($warning));
