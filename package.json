@@ -51,7 +51,7 @@
   "scripts": {
     "postinstall": "yarn run build",
     "build": "yarn run css-compile --style=compressed && yarn run js-compile",
-    "css-compile": "sass themes/pmahomme/scss:themes/pmahomme/css themes/original/scss:themes/original/css themes/metro/scss:themes/metro/css themes/bootstrap/scss:themes/bootstrap/css",
+    "css-compile": "sass themes/pmahomme/scss:themes/pmahomme/css themes/original/scss:themes/original/css themes/metro/scss:themes/metro/css themes/bootstrap/scss:themes/bootstrap/css themes/xampp/scss:themes/xampp/css",
     "css-lint": "stylelint --syntax scss \"themes/**/scss/*.scss\"",
     "js-lint": "eslint js/src test/javascript test/jest jest.config.js",
     "js-compile": "babel js/src -d js/dist",
