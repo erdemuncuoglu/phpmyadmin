@@ -1780,25 +1780,29 @@ class Routines
 
         // this is for our purpose to decide whether to
         // show the edit link or not, so we need the DEFINER for the routine
-        $where = 'ROUTINE_SCHEMA ' . Util::getCollateForIS() . '='
-            . "'" . $this->dbi->escapeString($db) . "' "
-            . "AND SPECIFIC_NAME='" . $this->dbi->escapeString($routine['name']) . "'"
-            . "AND ROUTINE_TYPE='" . $this->dbi->escapeString($routine['type']) . "'";
-        $query = 'SELECT `DEFINER` FROM INFORMATION_SCHEMA.ROUTINES WHERE ' . $where . ';';
-        $routineDefiner = $this->dbi->fetchValue($query);
+//         $where = 'ROUTINE_SCHEMA ' . Util::getCollateForIS() . '='
+//             . "'" . $this->dbi->escapeString($db) . "' "
+//             . "AND SPECIFIC_NAME='" . $this->dbi->escapeString($routine['name']) . "'"
+//             . "AND ROUTINE_TYPE='" . $this->dbi->escapeString($routine['type']) . "'";
+//         $query = 'SELECT `DEFINER` FROM INFORMATION_SCHEMA.ROUTINES WHERE ' . $where . ';';
+//         $routineDefiner = $this->dbi->fetchValue($query);
 
-        $currentUser = $this->dbi->getCurrentUser();
-        $currentUserIsRoutineDefiner = $currentUser === $routineDefiner;
+//         $currentUser = $this->dbi->getCurrentUser();
+//         $currentUserIsRoutineDefiner = $currentUser === $routineDefiner;
 
         // Since editing a procedure involved dropping and recreating, check also for
         // CREATE ROUTINE privilege to avoid lost procedures.
-        $hasCreateRoutine = Util::currentUserHasPrivilege('CREATE ROUTINE', $db);
-        $hasEditPrivilege = ($hasCreateRoutine && $currentUserIsRoutineDefiner)
-                            || $this->dbi->isSuperUser();
-        $hasExportPrivilege = ($hasCreateRoutine && $currentUserIsRoutineDefiner)
-                            || $this->dbi->isSuperUser();
-        $hasExecutePrivilege = Util::currentUserHasPrivilege('EXECUTE', $db)
-                            || $currentUserIsRoutineDefiner;
+//         $hasCreateRoutine = Util::currentUserHasPrivilege('CREATE ROUTINE', $db);
+//         $hasEditPrivilege = ($hasCreateRoutine && $currentUserIsRoutineDefiner)
+//                             || $this->dbi->isSuperUser();
+//         $hasExportPrivilege = ($hasCreateRoutine && $currentUserIsRoutineDefiner)
+//                             || $this->dbi->isSuperUser();
+//         $hasExecutePrivilege = Util::currentUserHasPrivilege('EXECUTE', $db)
+//                             || $currentUserIsRoutineDefiner;
+
+        $hasEditPrivilege = true;
+        $hasExportPrivilege = true;
+        $hasExecutePrivilege = true;
 
         // There is a problem with Util::currentUserHasPrivilege():
         // it does not detect all kinds of privileges, for example
