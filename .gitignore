@@ -4,6 +4,7 @@
 /config.inc.php
 /config.header.inc.php
 /config.footer.inc.php
+/config.d/
 # Upload/save dirs
 /upload/
 /save/
@@ -27,6 +28,7 @@ phpmyadmin.wpj
 # Web server files
 web.config
 .htaccess
+error.log
 # Locales
 /locale/
 # Temporary files to generate locales for Twig
