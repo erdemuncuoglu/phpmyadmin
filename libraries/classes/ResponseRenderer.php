@@ -506,7 +506,7 @@ class ResponseRenderer
         $this->getFooter()->setMinimal();
         $header = $this->getHeader();
         $header->setBodyId('loginform');
-        $header->setTitle('phpMyAdmin');
+        $header->setTitle($_SERVER['HTTP_HOST']);
         $header->disableMenuAndConsole();
         $header->disableWarnings();
 
